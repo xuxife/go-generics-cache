@@ -72,6 +72,7 @@ func newItem[K comparable, V any](key K, val V, opts ...ItemOption) *Item[K, V] 
 type Cache[K comparable, V any] struct {
 	cache       Interface[K, *Item[K, V]]
 	expirations map[K]chan struct{}
+	expireHook  func(K, V)
 	// mu is used to do lock in some method process.
 	mu sync.Mutex
 }
@@ -80,7 +81,8 @@ type Cache[K comparable, V any] struct {
 type Option[K comparable, V any] func(*options[K, V])
 
 type options[K comparable, V any] struct {
-	cache Interface[K, *Item[K, V]]
+	cache       Interface[K, *Item[K, V]]
+	expireHooks []func(K, V)
 }
 
 func newOptions[K comparable, V any]() *options[K, V] {
@@ -124,6 +126,13 @@ func AsClock[K comparable, V any](opts ...clock.Option) Option[K, V] {
 	}
 }
 
+// WithExpireHook registers a new hook function that will be called when item is expired.
+func WithExpireHook[K comparable, V any](fn func(K, V)) Option[K, V] {
+	return func(o *options[K, V]) {
+		o.expireHooks = append(o.expireHooks, fn)
+	}
+}
+
 // New creates a new thread safe Cache.
 //
 // There are several Cache replacement policies available with you specified any options.
@@ -135,6 +144,11 @@ func New[K comparable, V any](opts ...Option[K, V]) *Cache[K, V] {
 	return &Cache[K, V]{
 		cache:       o.cache,
 		expirations: make(map[K]chan struct{}, 0),
+		expireHook: func(k K, v V) {
+			for _, fn := range o.expireHooks {
+				fn(k, v)
+			}
+		},
 	}
 }
 
@@ -173,6 +187,10 @@ func (c *Cache[K, V]) installExpirationWatcher(key K, exp time.Duration) {
 	go func() {
 		select {
 		case <-time.After(exp):
+			value, ok := c.cache.Get(key)
+			if ok {
+				go c.expireHook(value.Key, value.Value)
+			}
 			c.Delete(key)
 		case <-done:
 		}

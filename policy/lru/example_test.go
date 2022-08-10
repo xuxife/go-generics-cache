@@ -3,7 +3,7 @@ package lru_test
 import (
 	"fmt"
 
-	"github.com/Code-Hex/go-generics-cache/policy/lru"
+	"github.com/xuxife/go-generics-cache/policy/lru"
 )
 
 func ExampleNewCache() {

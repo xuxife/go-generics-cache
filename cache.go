@@ -4,12 +4,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Code-Hex/go-generics-cache/policy/clock"
-	"github.com/Code-Hex/go-generics-cache/policy/fifo"
-	"github.com/Code-Hex/go-generics-cache/policy/lfu"
-	"github.com/Code-Hex/go-generics-cache/policy/lru"
-	"github.com/Code-Hex/go-generics-cache/policy/mru"
-	"github.com/Code-Hex/go-generics-cache/policy/simple"
+	"github.com/xuxife/go-generics-cache/policy/clock"
+	"github.com/xuxife/go-generics-cache/policy/fifo"
+	"github.com/xuxife/go-generics-cache/policy/lfu"
+	"github.com/xuxife/go-generics-cache/policy/lru"
+	"github.com/xuxife/go-generics-cache/policy/mru"
+	"github.com/xuxife/go-generics-cache/policy/simple"
 )
 
 // Interface is a common-cache interface.

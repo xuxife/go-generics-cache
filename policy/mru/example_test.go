@@ -3,7 +3,7 @@ package mru_test
 import (
 	"fmt"
 
-	"github.com/Code-Hex/go-generics-cache/policy/mru"
+	"github.com/xuxife/go-generics-cache/policy/mru"
 )
 
 func ExampleNewCache() {

@@ -5,12 +5,12 @@ import (
 	"sync"
 	"testing"
 
-	cache "github.com/Code-Hex/go-generics-cache"
-	"github.com/Code-Hex/go-generics-cache/policy/clock"
-	"github.com/Code-Hex/go-generics-cache/policy/fifo"
-	"github.com/Code-Hex/go-generics-cache/policy/lfu"
-	"github.com/Code-Hex/go-generics-cache/policy/lru"
-	"github.com/Code-Hex/go-generics-cache/policy/mru"
+	cache "github.com/xuxife/go-generics-cache"
+	"github.com/xuxife/go-generics-cache/policy/clock"
+	"github.com/xuxife/go-generics-cache/policy/fifo"
+	"github.com/xuxife/go-generics-cache/policy/lfu"
+	"github.com/xuxife/go-generics-cache/policy/lru"
+	"github.com/xuxife/go-generics-cache/policy/mru"
 )
 
 func TestMultiThreadIncr(t *testing.T) {

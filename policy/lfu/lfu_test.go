@@ -3,7 +3,7 @@ package lfu_test
 import (
 	"testing"
 
-	"github.com/Code-Hex/go-generics-cache/policy/lfu"
+	"github.com/xuxife/go-generics-cache/policy/lfu"
 )
 
 func TestSet(t *testing.T) {

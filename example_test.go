@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	cache "github.com/Code-Hex/go-generics-cache"
+	cache "github.com/xuxife/go-generics-cache"
 )
 
 func ExampleCache() {

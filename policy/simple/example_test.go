@@ -3,7 +3,7 @@ package simple_test
 import (
 	"fmt"
 
-	"github.com/Code-Hex/go-generics-cache/policy/simple"
+	"github.com/xuxife/go-generics-cache/policy/simple"
 )
 
 func ExampleNewCache() {

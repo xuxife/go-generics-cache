@@ -3,7 +3,7 @@ package clock_test
 import (
 	"fmt"
 
-	"github.com/Code-Hex/go-generics-cache/policy/clock"
+	"github.com/xuxife/go-generics-cache/policy/clock"
 )
 
 func ExampleNewCache() {
